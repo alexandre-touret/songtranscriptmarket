@@ -21,7 +21,6 @@ public class Transcriptionrequest implements Serializable {
     @Id
     private String id;
 
-    @NotNull
     @Field("request_id")
     private String request_id;
 
@@ -40,7 +39,6 @@ public class Transcriptionrequest implements Serializable {
     @TextIndexed()
     private String release;
 
-    @NotNull
     @Field("userid")
     private String userid;
 
