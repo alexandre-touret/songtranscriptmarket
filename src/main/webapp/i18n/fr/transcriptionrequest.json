@@ -1,0 +1,26 @@
+{
+    "songtranscriptmarketApp": {
+        "transcriptionrequest" : {
+            "home": {
+                "title": "Transcriptionrequests",
+                "createLabel": "Créer un nouveau Transcriptionrequest",
+                "createOrEditLabel": "Créer ou éditer un Transcriptionrequest"
+            },
+            "created": "Un nouveau Transcriptionrequest a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Transcriptionrequest avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Transcriptionrequest avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Transcriptionrequest {{ id }} ?"
+            },
+            "detail": {
+                "title": "Transcriptionrequest"
+            },
+            "request_id": "Request Id",
+            "song_name": "Song Name",
+            "artist": "Artist",
+            "release": "Release",
+            "userid": "Userid",
+            "price": "Price"
+        }
+    }
+}

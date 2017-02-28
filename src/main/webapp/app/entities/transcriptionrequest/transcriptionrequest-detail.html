@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="songtranscriptmarketApp.transcriptionrequest.detail.title">Transcriptionrequest</span> {{vm.transcriptionrequest.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.request_id">Request Id</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.request_id}}</span>
+        </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.song_name">Song Name</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.song_name}}</span>
+        </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.artist">Artist</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.artist}}</span>
+        </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.release">Release</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.release}}</span>
+        </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.userid">Userid</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.userid}}</span>
+        </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.price">Price</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.price}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="transcriptionrequest-detail.edit({id:vm.transcriptionrequest.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
