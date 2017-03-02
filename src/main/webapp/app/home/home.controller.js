@@ -40,7 +40,8 @@
         function search () {
             console.log("search");
             PublicSearchService.query({
-                page: vm.page
+                page: vm.page,
+                query:vm.query
             }, onSuccess, onError);
 
             function onSuccess(data) {
