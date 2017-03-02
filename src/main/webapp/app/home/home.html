@@ -28,24 +28,39 @@
                 </div>
 
                 <div class="form-group col-md-8">
-                    <input type="text" name="query" class="form-control" ng-model="vm.query" placeholder="Recherche..."/>
+                    <input type="text" name="query" class="form-control" ng-model="vm.query"
+                           placeholder="Recherche..."/>
                 </div>
                 <div class="form-group col-md-4">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-default btn-block btn-primary">Rechercher</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <table class="jh-table table table-striped">
-                        <tr ng-repeat="transcriptionrequest in vm.results ">
-                            <td>{{transcriptionrequest.request_id}}</td>
-                            <td>{{transcriptionrequest.song_name}}</td>
-                            <td>{{transcriptionrequest.artist}}</td>
-                            <td>{{transcriptionrequest.release}}</td>
-                            <td>{{transcriptionrequest.userid}}</td>
-                            <td>{{transcriptionrequest.price}}</td>
-                        </tr>
-                    </table>
+                <div class="form-group col-md-12">
+                    <div class="panel panel-primary" ng-repeat="transcriptionrequest in vm.results ">
+                        <div class="panel-heading">
+                            <strong>{{transcriptionrequest.artist}} : {{transcriptionrequest.song_name}}</strong>
+                        </div>
+
+                        <div class="panel-body">
+                            <fieldset>
+                                <label for="release" class="col-md-4">Version</label>
+                                {{transcriptionrequest.release}}
+                            </fieldset>
+                        <div class="panel-footer">
+                            <strong>{{transcriptionrequest.price}}</strong>
+                        </div>
+
+                            {{transcriptionrequest.request_id}}
+                            {{transcriptionrequest.song_name}}
+                            {{transcriptionrequest.artist}}
+                            {{transcriptionrequest.release}}
+                            {{transcriptionrequest.userid}}
+
+                        </div>
+                    </div>
+
+
                 </div>
 
             </div>
