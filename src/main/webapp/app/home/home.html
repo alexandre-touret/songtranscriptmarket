@@ -41,24 +41,20 @@
                            infinite-scroll-disabled="vm.page >= vm.links['last']">
                     <div class="panel panel-primary" ng-repeat="transcriptionrequest in vm.results ">
                         <div class="panel-heading">
-                            <h2 style="color: white">{{transcriptionrequest.artist}} :
+                            <h2 class="panel-title">{{transcriptionrequest.artist}} :
                                 {{transcriptionrequest.song_name}}</h2>
                         </div>
 
                         <div class="panel-body">
-                            <fieldset>
-                                <label for="release" class="col-md-4">Version</label>
-                                {{transcriptionrequest.release}}
-                            </fieldset>
+                            <div class="list-group">
+                            <div class="list-group-item">Version : {{transcriptionrequest.release}}</div>
+                            <div class="list-group-item">Morceau : {{transcriptionrequest.song_name}}</div>
+                            <div class="list-group-item">Artiste : {{transcriptionrequest.artist}}</div>
+
+                            </div>
                             <div class="panel-footer">
                                 <strong>{{transcriptionrequest.price}}</strong>
                             </div>
-
-                            {{transcriptionrequest.request_id}}
-                            {{transcriptionrequest.song_name}}
-                            {{transcriptionrequest.artist}}
-                            {{transcriptionrequest.release}}
-                            {{transcriptionrequest.userid}}
 
                         </div>
                     </div>
