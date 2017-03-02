@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.TextScore;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -17,6 +18,9 @@ import java.util.Objects;
 public class Transcriptionrequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @TextScore
+    private Float score;
 
     @Id
     private String id;
@@ -126,6 +130,14 @@ public class Transcriptionrequest implements Serializable {
     public Transcriptionrequest price(Float price) {
         this.price = price;
         return this;
+    }
+
+    public Float getScore() {
+        return score;
+    }
+
+    public void setScore(Float score) {
+        this.score = score;
     }
 
     public void setPrice(Float price) {
