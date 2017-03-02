@@ -5,9 +5,9 @@
         .module('songtranscriptmarketApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state','PublicSearchService'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state','PublicSearchService','AlertService'];
 
-    function HomeController ($scope, Principal, LoginService, $state,PublicSearchService) {
+    function HomeController ($scope, Principal, LoginService, $state,PublicSearchService,AlertService) {
         var vm = this;
 
         vm.account = null;
@@ -15,6 +15,9 @@
         vm.login = LoginService.open;
         vm.register = register;
         vm.results = [];
+        vm.query = null;
+        vm.search = search;
+        vm.page = 0;
 
 
         $scope.$on('authenticationSuccess', function() {
@@ -22,7 +25,7 @@
         });
 
         getAccount();
-
+        vm.search();
         function getAccount() {
             Principal.identity().then(function(account) {
                 vm.account = account;
@@ -33,24 +36,15 @@
             $state.go('register');
         }
 
-        loadAll();
 
-        function loadAll () {
-            console.log("loadAll");
+        function search () {
+            console.log("search");
             PublicSearchService.query({
-                page: vm.page,
-                size: vm.itemsPerPage,
-                sort: sort()
+                page: vm.page
             }, onSuccess, onError);
-            function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
-                if (vm.predicate !== 'id') {
-                    result.push('id');
-                }
-                return result;
-            }
 
             function onSuccess(data) {
+                vm.results=[];
                 for (var i = 0; i < data.length; i++) {
                     console.log(data[i]);
                     vm.results.push(data[i]);
@@ -61,6 +55,5 @@
                 AlertService.error(error.data.message);
             }
         }
-
     }
 })();

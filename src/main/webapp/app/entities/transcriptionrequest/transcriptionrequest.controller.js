@@ -12,7 +12,7 @@
         var vm = this;
 
         vm.transcriptionrequests = [];
-        vm.loadPage = loadPage;
+        vm.loadPage = loadPage();
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.page = 0;
         vm.links = {
