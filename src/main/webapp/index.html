@@ -14,7 +14,6 @@
     <!-- endinject -->
     <!--<link rel="stylesheet" href="content/css/vendor.css">-->
     <!-- endbuild -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css"/>
     <!-- placeholder link to load bootswatch themes, title holds the current applied theme name-->
     <!--?<link rel="stylesheet" href="" id="bootswatch-css" title="Default">-->
     <!-- placeholder link to load bootswatch themes, title holds the current applied theme name-->
@@ -22,6 +21,7 @@
 
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css"/>
     <!-- endbuild -->
 </head>
 <body ng-app="songtranscriptmarketApp" ng-strict-di="">
@@ -37,18 +37,7 @@
 
     <div class="footer" ng-cloak="">
         <p data-translate="footer">This is your footer</p>
-        <div ng-controller="BootswatchController as vm" id="bootswatch-theme-switcher" uib-dropdown="" class="dropup pull-right">
-                    <a class="btn btn-default dropdown-toggle" uib-dropdown-toggle="">
-                        <span class="glyphicon glyphicon-adjust"></span>
-                        <span class="hidden-tablet" translate="bootswatch.themeSelector">Theme</span>
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" uib-dropdown-menu="">
-                        <li class="theme-link" ng-repeat="theme in vm.themes">
-                            <a href="" jh-switch-theme="theme">{{theme.name}}</a>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
 
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
