@@ -61,7 +61,7 @@ public class TranscriptionrequestResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new transcriptionrequest cannot already have an ID")).body(null);
         }
         transcriptionrequest.setUserid(userService.getUserWithAuthorities().getId());
-        transcriptionrequest.setRequest_id(UUID.randomUUID().toString());
+        transcriptionrequest.setRequestId(UUID.randomUUID().toString());
         Transcriptionrequest result = transcriptionrequestRepository.save(transcriptionrequest);
         return ResponseEntity.created(new URI("/api/transcriptionrequests/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

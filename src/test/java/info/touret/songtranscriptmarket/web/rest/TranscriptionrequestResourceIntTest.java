@@ -117,8 +117,8 @@ public class TranscriptionrequestResourceIntTest {
         List<Transcriptionrequest> transcriptionrequestList = transcriptionrequestRepository.findAll();
         assertThat(transcriptionrequestList).hasSize(databaseSizeBeforeCreate + 1);
         Transcriptionrequest testTranscriptionrequest = transcriptionrequestList.get(transcriptionrequestList.size() - 1);
-        assertThat(testTranscriptionrequest.getRequest_id()).isEqualTo(DEFAULT_REQUEST_ID);
-        assertThat(testTranscriptionrequest.getSong_name()).isEqualTo(DEFAULT_SONG_NAME);
+        assertThat(testTranscriptionrequest.getRequestId()).isEqualTo(DEFAULT_REQUEST_ID);
+        assertThat(testTranscriptionrequest.getSongName()).isEqualTo(DEFAULT_SONG_NAME);
         assertThat(testTranscriptionrequest.getArtist()).isEqualTo(DEFAULT_ARTIST);
         assertThat(testTranscriptionrequest.getRelease()).isEqualTo(DEFAULT_RELEASE);
         assertThat(testTranscriptionrequest.getUserid()).isEqualTo(DEFAULT_USERID);
@@ -148,7 +148,7 @@ public class TranscriptionrequestResourceIntTest {
     public void checkRequest_idIsRequired() throws Exception {
         int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
         // set the field null
-        transcriptionrequest.setRequest_id(null);
+        transcriptionrequest.setRequestId(null);
 
         // Create the Transcriptionrequest, which fails.
 
@@ -165,7 +165,7 @@ public class TranscriptionrequestResourceIntTest {
     public void checkSong_nameIsRequired() throws Exception {
         int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
         // set the field null
-        transcriptionrequest.setSong_name(null);
+        transcriptionrequest.setSongName(null);
 
         // Create the Transcriptionrequest, which fails.
 
@@ -314,8 +314,8 @@ public class TranscriptionrequestResourceIntTest {
         List<Transcriptionrequest> transcriptionrequestList = transcriptionrequestRepository.findAll();
         assertThat(transcriptionrequestList).hasSize(databaseSizeBeforeUpdate);
         Transcriptionrequest testTranscriptionrequest = transcriptionrequestList.get(transcriptionrequestList.size() - 1);
-        assertThat(testTranscriptionrequest.getRequest_id()).isEqualTo(UPDATED_REQUEST_ID);
-        assertThat(testTranscriptionrequest.getSong_name()).isEqualTo(UPDATED_SONG_NAME);
+        assertThat(testTranscriptionrequest.getRequestId()).isEqualTo(UPDATED_REQUEST_ID);
+        assertThat(testTranscriptionrequest.getSongName()).isEqualTo(UPDATED_SONG_NAME);
         assertThat(testTranscriptionrequest.getArtist()).isEqualTo(UPDATED_ARTIST);
         assertThat(testTranscriptionrequest.getRelease()).isEqualTo(UPDATED_RELEASE);
         assertThat(testTranscriptionrequest.getUserid()).isEqualTo(UPDATED_USERID);

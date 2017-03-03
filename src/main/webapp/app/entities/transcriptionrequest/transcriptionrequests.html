@@ -19,8 +19,8 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="request_id"><span data-translate="songtranscriptmarketApp.transcriptionrequest.request_id">Request Id</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="song_name"><span data-translate="songtranscriptmarketApp.transcriptionrequest.song_name">Song Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="requestId"><span data-translate="songtranscriptmarketApp.transcriptionrequest.requestId">Request Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="songName"><span data-translate="songtranscriptmarketApp.transcriptionrequest.songName">Song Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="artist"><span data-translate="songtranscriptmarketApp.transcriptionrequest.artist">Artist</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="release"><span data-translate="songtranscriptmarketApp.transcriptionrequest.release">Release</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="userid"><span data-translate="songtranscriptmarketApp.transcriptionrequest.userid">Userid</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -31,8 +31,8 @@
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="transcriptionrequest in vm.transcriptionrequests track by transcriptionrequest.id">
                     <td><a ui-sref="transcriptionrequest-detail({id:transcriptionrequest.id})">{{transcriptionrequest.id}}</a></td>
-                    <td>{{transcriptionrequest.request_id}}</td>
-                    <td>{{transcriptionrequest.song_name}}</td>
+                    <td>{{transcriptionrequest.requestId}}</td>
+                    <td>{{transcriptionrequest.songName}}</td>
                     <td>{{transcriptionrequest.artist}}</td>
                     <td>{{transcriptionrequest.release}}</td>
                     <td>{{transcriptionrequest.userid}}</td>

@@ -26,12 +26,12 @@ public class Transcriptionrequest implements Serializable {
     private String id;
 
     @Field("request_id")
-    private String request_id;
+    private String requestId;
 
     @NotNull
     @Field("song_name")
     @TextIndexed(weight = 2)
-    private String song_name;
+    private String songName;
 
     @NotNull
     @Field("artist")
@@ -58,30 +58,30 @@ public class Transcriptionrequest implements Serializable {
         this.id = id;
     }
 
-    public String getRequest_id() {
-        return request_id;
+    public String getRequestId() {
+        return requestId;
     }
 
     public Transcriptionrequest request_id(String request_id) {
-        this.request_id = request_id;
+        this.requestId = request_id;
         return this;
     }
 
-    public void setRequest_id(String request_id) {
-        this.request_id = request_id;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
-    public String getSong_name() {
-        return song_name;
+    public String getSongName() {
+        return songName;
     }
 
     public Transcriptionrequest song_name(String song_name) {
-        this.song_name = song_name;
+        this.songName = song_name;
         return this;
     }
 
-    public void setSong_name(String song_name) {
-        this.song_name = song_name;
+    public void setSongName(String songName) {
+        this.songName = songName;
     }
 
     public String getArtist() {
@@ -168,8 +168,8 @@ public class Transcriptionrequest implements Serializable {
     public String toString() {
         return "Transcriptionrequest{" +
             "id=" + id +
-            ", request_id='" + request_id + "'" +
-            ", song_name='" + song_name + "'" +
+            ", requestId='" + requestId + "'" +
+            ", songName='" + songName + "'" +
             ", artist='" + artist + "'" +
             ", release='" + release + "'" +
             ", userid='" + userid + "'" +
