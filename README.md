@@ -30,6 +30,38 @@ Add the `-h` flag on any command to see how you can use it. For example, `bower 
 For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
 
 
+## Security Token
+All the informations about security such as jwt token, facebook secrets and suck like are externalized in another file. It's not stored in the git repository but should be in the same directory where spring boot is launched.
+
+This file should be named as application-secret.yml and have the following content :
+
+    spring:
+        social:
+            # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
+            google:
+                client-id: xxx
+                client-secret: xxx
+
+        # see https://developers.facebook.com/docs/facebook-login/v2.2
+            facebook:
+                client-id: xxx
+                client-secret: xxx
+
+        # see https://apps.twitter.com/app/
+            twitter:
+                client-id: xxx
+                client-secret: xxx
+
+        # jhipster-needle-add-social-configuration
+    jhipster:
+        security:
+            authentication:
+                jwt:
+                    secret: my-secret-token-to-change-in-production
+
+
+At the runtime the profile 'secret' should be activated.
+
 ## Building for production
 
 To optimize the songtranscriptmarket application for production, run:

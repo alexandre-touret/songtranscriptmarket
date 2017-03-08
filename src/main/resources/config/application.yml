@@ -99,3 +99,5 @@ jhipster:
 # ===================================================================
 
 application:
+    musicbrainz:
+        url: "https://musicbrainz.org/ws/2/artist/?query="
