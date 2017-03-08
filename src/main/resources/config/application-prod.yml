@@ -31,22 +31,7 @@ spring:
     thymeleaf:
         cache: true
 
-    # Overriding configuration for social secrets. This configuration should be injected at runtime during development
-    social:
-            # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
-            google:
-                client-id: xxx
-                client-secret: xxx
 
-            # see https://developers.facebook.com/docs/facebook-login/v2.2
-            facebook:
-                client-id: xxx
-                client-secret: xxx
-
-            # see https://apps.twitter.com/app/
-            twitter:
-                client-id: xxx
-                client-secret: xxx
 # ===================================================================
 # To enable SSL, generate a certificate using:
 # keytool -genkey -alias songtranscriptmarket -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
@@ -85,7 +70,6 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 8b64cca0041215611f499adb84efa79206bcd04b
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
