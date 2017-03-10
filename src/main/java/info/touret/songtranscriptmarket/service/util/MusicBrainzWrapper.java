@@ -1,4 +1,7 @@
-package info.touret.songtranscriptmarket.service.dto.musicbrainz;
+package info.touret.songtranscriptmarket.service.util;
+
+import info.touret.songtranscriptmarket.service.dto.musicbrainz.Artist;
+import info.touret.songtranscriptmarket.service.dto.musicbrainz.Metadata;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -15,4 +18,6 @@ public class MusicBrainzWrapper {
             .collect(Collectors.toList());
         return artists;
     }
+
+
 }

@@ -5,9 +5,9 @@
         .module('songtranscriptmarketApp')
         .controller('TranscriptionrequestDialogController', TranscriptionrequestDialogController);
 
-    TranscriptionrequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Transcriptionrequest'];
+    TranscriptionrequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Transcriptionrequest', 'ArtistSearchService'];
 
-    function TranscriptionrequestDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Transcriptionrequest) {
+    function TranscriptionrequestDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Transcriptionrequest, ArtistSearchService) {
         var vm = this;
 
         vm.transcriptionrequest = entity;
@@ -39,6 +39,25 @@
 
         function onSaveError () {
             vm.isSaving = false;
+        }
+
+        function searchArtist(query) {
+            console.log("search");
+            PublicSearchService.query({
+                query: query
+            }, onSuccess, onError);
+
+            function onSuccess(data) {
+                vm.results = [];
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+                    vm.results.push(data[i]);
+                }
+            }
+
+            function onError(error) {
+                AlertService.error(error.data.message);
+            }
         }
 
 

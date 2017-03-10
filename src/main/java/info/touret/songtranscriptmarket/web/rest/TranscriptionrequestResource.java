@@ -2,13 +2,12 @@ package info.touret.songtranscriptmarket.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import info.touret.songtranscriptmarket.domain.Transcriptionrequest;
-
 import info.touret.songtranscriptmarket.repository.TranscriptionrequestRepository;
 import info.touret.songtranscriptmarket.service.UserService;
 import info.touret.songtranscriptmarket.web.rest.util.HeaderUtil;
 import info.touret.songtranscriptmarket.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +32,11 @@ import java.util.UUID;
 @RequestMapping("/api")
 public class TranscriptionrequestResource {
 
-    private final Logger log = LoggerFactory.getLogger(TranscriptionrequestResource.class);
-
     private static final String ENTITY_NAME = "transcriptionrequest";
-
+    private final Logger log = LoggerFactory.getLogger(TranscriptionrequestResource.class);
+    private final TranscriptionrequestRepository transcriptionrequestRepository;
     @Autowired
     UserService userService;
-
-    private final TranscriptionrequestRepository transcriptionrequestRepository;
 
     public TranscriptionrequestResource(TranscriptionrequestRepository transcriptionrequestRepository) {
         this.transcriptionrequestRepository = transcriptionrequestRepository;
@@ -134,5 +130,4 @@ public class TranscriptionrequestResource {
         transcriptionrequestRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 }

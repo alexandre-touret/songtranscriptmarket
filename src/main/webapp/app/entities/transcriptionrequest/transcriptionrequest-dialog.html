@@ -13,20 +13,6 @@
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.transcriptionrequest.id" readonly />
         </div>
-        <!--
-        <div class="form-group">
-            <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.requestId" for="field_request_id">Request Id</label>
-            <input type="text" class="form-control" name="requestId" id="field_request_id"
-                    ng-model="vm.transcriptionrequest.requestId"
-                    required/>
-            <div ng-show="editForm.requestId.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.requestId.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        -->
         <div class="form-group">
             <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.songName" for="field_song_name">Song Name</label>
             <input type="text" class="form-control" name="songName" id="field_song_name"
@@ -42,8 +28,10 @@
         <div class="form-group">
             <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.artist" for="field_artist">Artist</label>
             <input type="text" class="form-control" name="artist" id="field_artist"
-                    ng-model="vm.transcriptionrequest.artist"
-                    required/>
+                   ng-model="vm.transcriptionrequest.artist"
+                   ng-change="vm.searchArtists(vm.transcriptionrequest.artist)"
+                   required/>
+
             <div ng-show="editForm.artist.$invalid">
                 <p class="help-block"
                     ng-show="editForm.artist.$error.required" data-translate="entity.validation.required">

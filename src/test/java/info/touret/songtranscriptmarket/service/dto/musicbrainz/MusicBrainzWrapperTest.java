@@ -1,5 +1,6 @@
 package info.touret.songtranscriptmarket.service.dto.musicbrainz;
 
+import info.touret.songtranscriptmarket.service.util.MusicBrainzWrapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

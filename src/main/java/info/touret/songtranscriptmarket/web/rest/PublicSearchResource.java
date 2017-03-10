@@ -30,7 +30,7 @@ import java.util.List;
 public class PublicSearchResource {
 
     private static final String ENTITY_NAME = "transcriptionrequest";
-    private final Logger log = LoggerFactory.getLogger(TranscriptionrequestResource.class);
+    private final Logger log = LoggerFactory.getLogger(PublicSearchResource.class);
     private final PublicSearchRepository publicSearchRepository;
 
     public PublicSearchResource(PublicSearchRepository publicsearchrepository) {
