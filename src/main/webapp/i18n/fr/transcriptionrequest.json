@@ -1,26 +1,27 @@
 {
     "songtranscriptmarketApp": {
         "transcriptionrequest" : {
+            "songName": "Morceau",
             "home": {
-                "title": "Transcriptionrequests",
-                "createLabel": "Créer un nouveau Transcriptionrequest",
-                "createOrEditLabel": "Créer ou éditer un Transcriptionrequest"
+                "title": "Mes transcriptions",
+                "createLabel": "Créer une nouvelle transcription",
+                "createOrEditLabel": "Créer ou éditer une transcription"
             },
-            "created": "Un nouveau Transcriptionrequest a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Transcriptionrequest avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Transcriptionrequest avec l'identifiant {{ param }} a été supprimé",
+            "created": "Une nouvelle transcription a été créé avec l'identifiant {{ param }}",
+            "updated": "La transcription avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "La transcription avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Transcriptionrequest {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer la transcription {{ id }} ?"
             },
             "detail": {
-                "title": "Transcriptionrequest"
+                "title": "Transcription"
             },
-            "request_id": "Request Id",
-            "song_name": "Song Name",
-            "artist": "Artist",
-            "release": "Release",
-            "userid": "Userid",
-            "price": "Price"
+            "requestId": "Identifiant",
+            "song_name": "Chanson",
+            "artist": "Artiste",
+            "release": "Version",
+            "userid": "Utilisateur",
+            "price": "Prix"
         }
     }
 }
