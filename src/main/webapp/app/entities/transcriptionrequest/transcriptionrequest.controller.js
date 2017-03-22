@@ -25,6 +25,7 @@
         loadAll();
 
         function loadAll () {
+
             Transcriptionrequest.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
@@ -39,6 +40,7 @@
             }
 
             function onSuccess(data, headers) {
+                vm.transcriptionrequests = [];
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < data.length; i++) {
