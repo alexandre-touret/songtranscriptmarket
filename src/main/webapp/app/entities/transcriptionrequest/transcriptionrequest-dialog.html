@@ -35,7 +35,6 @@
             <input type="text" class="typeahead form-control" name="artist" id="field_artist"
                    ng-model="vm.transcriptionrequest.artist"
                    uib-typeahead="artist for artist in vm.artistsearchresults  | limitTo:10"
-                   ng-change="vm.test()"
                    required/>
 
             <div ng-show="editForm.artist.$invalid">

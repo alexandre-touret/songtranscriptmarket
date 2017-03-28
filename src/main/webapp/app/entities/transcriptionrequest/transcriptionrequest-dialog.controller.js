@@ -5,16 +5,15 @@
         .module('songtranscriptmarketApp')
         .controller('TranscriptionrequestDialogController', TranscriptionrequestDialogController);
 
-    TranscriptionrequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Transcriptionrequest', 'ArtistSearchService'];
+    TranscriptionrequestDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Transcriptionrequest', 'ArtistSearchService', 'AlertService'];
 
-    function TranscriptionrequestDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Transcriptionrequest, ArtistSearchService) {
+    function TranscriptionrequestDialogController($timeout, $scope, $stateParams, $uibModalInstance, entity, Transcriptionrequest, ArtistSearchService, AlertService) {
         var vm = this;
 
         vm.transcriptionrequest = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.artistsearchresults = test();
-
+        vm.artistsearchresults = findArtists();
 
         $timeout(function () {
             angular.element('.form-group:eq(1)>input').focus();
@@ -46,9 +45,7 @@
         }
 
 
-        function test() {
-            console.log("search");
-
+        function findArtists() {
             if (vm.artistsearchquery != undefined
                 && vm.artistsearchquery != null
                 && vm.artistsearchquery.length > 4) {
@@ -75,6 +72,10 @@
             vm.transcriptionrequest.artist = item.name;
         }
 
+        $scope.$watch('vm.transcriptionrequest.artist', function (p1, p2, p3) {
+            vm.artistsearchquery = p1;
+            findArtists();
+        });
 
     }
 })();

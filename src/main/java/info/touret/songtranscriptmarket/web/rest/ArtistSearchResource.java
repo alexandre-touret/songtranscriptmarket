@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,12 +35,18 @@ public class ArtistSearchResource {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Artist>> getArtists(@RequestParam("q") String query)
+    public ResponseEntity<List<Artist>> getArtists(@RequestParam("q") String query, @RequestParam("cacheBuster") String cache)
         throws URISyntaxException {
-        List<Artist> artists = new ArrayList<>();
-        if (!Strings.isNullOrEmpty(query)) {
-            artists = musicBrainzService.searchArtists(query);
+
+        ResponseEntity<List<Artist>> responseEntity = null;
+        try {
+            if (!Strings.isNullOrEmpty(query)) {
+                responseEntity = new ResponseEntity<>(musicBrainzService.searchArtists(query), HttpStatus.OK);
+            }
+        } catch (RestClientException e) {
+            log.error(e.getMessage());
+            responseEntity = new ResponseEntity<>(Collections.emptyList(), HttpStatus.REQUEST_TIMEOUT);
         }
-        return new ResponseEntity<>(artists, HttpStatus.OK);
+        return responseEntity;
     }
 }
