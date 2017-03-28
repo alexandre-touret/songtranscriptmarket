@@ -4,9 +4,9 @@
         .module('songtranscriptmarketApp')
         .factory('Transcriptionrequest', Transcriptionrequest);
 
-    Transcriptionrequest.$inject = ['$resource'];
+    Transcriptionrequest.$inject = ['$resource', 'DateUtils'];
 
-    function Transcriptionrequest ($resource) {
+    function Transcriptionrequest($resource, DateUtils) {
         var resourceUrl =  'api/transcriptionrequests/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,6 +16,7 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.lastUpdated = DateUtils.convertDateTimeFromServer(data.lastUpdated);
                     }
                     return data;
                 }

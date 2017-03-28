@@ -12,14 +12,14 @@
 
         vm.transcriptionrequest = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.save = save;
         vm.artistsearchresults = findArtists();
 
         $timeout(function () {
             angular.element('.form-group:eq(1)>input').focus();
         });
-
-        vm.artistsearchquery = '';
 
         function clear() {
             $uibModalInstance.dismiss('cancel');
@@ -44,7 +44,11 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.lastUpdated = false;
 
+        function openCalendar(date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
         function findArtists() {
             if (vm.artistsearchquery != undefined
                 && vm.artistsearchquery != null
@@ -67,7 +71,6 @@
                 AlertService.error(error.data.message);
             }
         }
-
         function addArtistOnForm(item) {
             vm.transcriptionrequest.artist = item.name;
         }

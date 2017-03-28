@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Mes données",
                 "transcriptionrequest": "Transcriptions",
+                "transcriptionrequest": "Transcriptionrequest",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

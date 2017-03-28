@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -56,13 +58,15 @@ public class TranscriptionrequestResource {
         if (transcriptionrequest.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new transcriptionrequest cannot already have an ID")).body(null);
         }
-        transcriptionrequest.setUserid(userService.getUserWithAuthorities().getId());
+        transcriptionrequest.setUserId(userService.getUserWithAuthorities().getId());
         transcriptionrequest.setRequestId(UUID.randomUUID().toString());
+        transcriptionrequest.setLastUpdated(Instant.now().atZone(ZoneId.of("Z")));
         Transcriptionrequest result = transcriptionrequestRepository.save(transcriptionrequest);
         return ResponseEntity.created(new URI("/api/transcriptionrequests/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+
     /**
      * PUT  /transcriptionrequests : Updates an existing transcriptionrequest.
      *
@@ -79,6 +83,7 @@ public class TranscriptionrequestResource {
         if (transcriptionrequest.getId() == null) {
             return createTranscriptionrequest(transcriptionrequest);
         }
+        transcriptionrequest.setLastUpdated(Instant.now().atZone(ZoneId.of("Z")));
         Transcriptionrequest result = transcriptionrequestRepository.save(transcriptionrequest);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, transcriptionrequest.getId().toString()))
@@ -101,7 +106,6 @@ public class TranscriptionrequestResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/transcriptionrequests");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
 
     /**
      * GET  /transcriptionrequests/:id : get the "id" transcriptionrequest.
@@ -130,4 +134,5 @@ public class TranscriptionrequestResource {
         transcriptionrequestRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
 }

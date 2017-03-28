@@ -1,3 +1,4 @@
+
 <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
@@ -16,11 +17,10 @@
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.songName"
-                   for="field_song_name">Song Name</label>
-            <input type="text" class="form-control" name="songName" id="field_song_name"
+                   for="field_songName">Song Name</label>
+            <input type="text" class="form-control" name="songName" id="field_songName"
                    ng-model="vm.transcriptionrequest.songName"
                    required/>
-
             <div ng-show="editForm.songName.$invalid">
                 <p class="help-block"
                    ng-show="editForm.songName.$error.required" data-translate="entity.validation.required">
@@ -29,23 +29,19 @@
             </div>
         </div>
         <div class="form-group">
-
             <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.artist"
                    for="field_artist">Artist</label>
-            <input type="text" class="typeahead form-control" name="artist" id="field_artist"
+            <input type="text" class="form-control" name="artist" id="field_artist"
                    ng-model="vm.transcriptionrequest.artist"
                    uib-typeahead="artist for artist in vm.artistsearchresults  | limitTo:10"
                    required/>
-
             <div ng-show="editForm.artist.$invalid">
                 <p class="help-block"
                    ng-show="editForm.artist.$error.required" data-translate="entity.validation.required">
                     This field is required.
                 </p>
             </div>
-
         </div>
-
         <div class="form-group">
             <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.release"
                    for="field_release">Release</label>
@@ -59,20 +55,6 @@
                 </p>
             </div>
         </div>
-        <!--
-        <div class="form-group">
-            <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.userid" for="field_userid">Userid</label>
-            <input type="text" class="form-control" name="userid" id="field_userid"
-                    ng-model="vm.transcriptionrequest.userid"
-                    required/>
-            <div ng-show="editForm.userid.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.userid.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        -->
         <div class="form-group">
             <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.price"
                    for="field_price">Price</label>
@@ -90,7 +72,32 @@
                 </p>
             </div>
         </div>
-
+        <div class="form-group">
+            <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.location"
+                   for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                   ng-model="vm.transcriptionrequest.location"
+                   required/>
+            <div ng-show="editForm.location.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.location.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="songtranscriptmarketApp.transcriptionrequest.instrument"
+                   for="field_instrument">Instrument</label>
+            <input type="text" class="form-control" name="instrument" id="field_instrument"
+                   ng-model="vm.transcriptionrequest.instrument"
+                   required/>
+            <div ng-show="editForm.instrument.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.instrument.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

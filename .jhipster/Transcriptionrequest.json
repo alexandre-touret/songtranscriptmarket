@@ -3,14 +3,14 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "request_id",
+            "fieldName": "requestId",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "song_name",
+            "fieldName": "songName",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "fieldName": "userid",
+            "fieldName": "userId",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -40,6 +40,27 @@
         {
             "fieldName": "price",
             "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "location",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "instrument",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdated",
+            "fieldType": "ZonedDateTime",
             "fieldValidateRules": [
                 "required"
             ]

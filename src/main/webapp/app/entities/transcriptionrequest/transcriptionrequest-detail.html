@@ -24,6 +24,18 @@
         <dd>
             <span>{{vm.transcriptionrequest.price}}</span>
         </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.location">Location</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.location}}</span>
+        </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.instrument">Instrument</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.instrument}}</span>
+        </dd>
+        <dt><span data-translate="songtranscriptmarketApp.transcriptionrequest.lastUpdated">Last Updated</span></dt>
+        <dd>
+            <span>{{vm.transcriptionrequest.lastUpdated | date:'medium'}}</span>
+        </dd>
     </dl>
 
     <button type="submit"

@@ -1,11 +1,9 @@
 package info.touret.songtranscriptmarket.web.rest;
 
 import info.touret.songtranscriptmarket.SongtranscriptmarketApp;
-
 import info.touret.songtranscriptmarket.domain.Transcriptionrequest;
 import info.touret.songtranscriptmarket.repository.TranscriptionrequestRepository;
 import info.touret.songtranscriptmarket.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +17,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.List;
 
+import static info.touret.songtranscriptmarket.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -47,11 +50,20 @@ public class TranscriptionrequestResourceIntTest {
     private static final String DEFAULT_RELEASE = "AAAAAAAAAA";
     private static final String UPDATED_RELEASE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_USERID = "AAAAAAAAAA";
-    private static final String UPDATED_USERID = "BBBBBBBBBB";
+    private static final String DEFAULT_USER_ID = "AAAAAAAAAA";
+    private static final String UPDATED_USER_ID = "BBBBBBBBBB";
 
     private static final Float DEFAULT_PRICE = 1F;
     private static final Float UPDATED_PRICE = 2F;
+
+    private static final String DEFAULT_LOCATION = "AAAAAAAAAA";
+    private static final String UPDATED_LOCATION = "BBBBBBBBBB";
+
+    private static final String DEFAULT_INSTRUMENT = "AAAAAAAAAA";
+    private static final String UPDATED_INSTRUMENT = "BBBBBBBBBB";
+
+    private static final ZonedDateTime DEFAULT_LAST_UPDATED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_LAST_UPDATED = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Autowired
     private TranscriptionrequestRepository transcriptionrequestRepository;
@@ -69,16 +81,6 @@ public class TranscriptionrequestResourceIntTest {
 
     private Transcriptionrequest transcriptionrequest;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-            TranscriptionrequestResource transcriptionrequestResource = new TranscriptionrequestResource(transcriptionrequestRepository);
-        this.restTranscriptionrequestMockMvc = MockMvcBuilders.standaloneSetup(transcriptionrequestResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setMessageConverters(jacksonMessageConverter).build();
-    }
-
     /**
      * Create an entity for this test.
      *
@@ -87,13 +89,26 @@ public class TranscriptionrequestResourceIntTest {
      */
     public static Transcriptionrequest createEntity() {
         Transcriptionrequest transcriptionrequest = new Transcriptionrequest()
-                .request_id(DEFAULT_REQUEST_ID)
-                .song_name(DEFAULT_SONG_NAME)
+            .requestId(DEFAULT_REQUEST_ID)
+            .songName(DEFAULT_SONG_NAME)
                 .artist(DEFAULT_ARTIST)
                 .release(DEFAULT_RELEASE)
-                .userid(DEFAULT_USERID)
-                .price(DEFAULT_PRICE);
+            .userId(DEFAULT_USER_ID)
+            .price(DEFAULT_PRICE)
+            .location(DEFAULT_LOCATION)
+            .instrument(DEFAULT_INSTRUMENT)
+            .lastUpdated(DEFAULT_LAST_UPDATED);
         return transcriptionrequest;
+    }
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        TranscriptionrequestResource transcriptionrequestResource = new TranscriptionrequestResource(transcriptionrequestRepository);
+        this.restTranscriptionrequestMockMvc = MockMvcBuilders.standaloneSetup(transcriptionrequestResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before
@@ -121,8 +136,11 @@ public class TranscriptionrequestResourceIntTest {
         assertThat(testTranscriptionrequest.getSongName()).isEqualTo(DEFAULT_SONG_NAME);
         assertThat(testTranscriptionrequest.getArtist()).isEqualTo(DEFAULT_ARTIST);
         assertThat(testTranscriptionrequest.getRelease()).isEqualTo(DEFAULT_RELEASE);
-        assertThat(testTranscriptionrequest.getUserid()).isEqualTo(DEFAULT_USERID);
+        assertThat(testTranscriptionrequest.getUserId()).isEqualTo(DEFAULT_USER_ID);
         assertThat(testTranscriptionrequest.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testTranscriptionrequest.getLocation()).isEqualTo(DEFAULT_LOCATION);
+        assertThat(testTranscriptionrequest.getInstrument()).isEqualTo(DEFAULT_INSTRUMENT);
+        assertThat(testTranscriptionrequest.getLastUpdated()).isEqualTo(DEFAULT_LAST_UPDATED);
     }
 
     @Test
@@ -145,7 +163,7 @@ public class TranscriptionrequestResourceIntTest {
     }
 
     @Test
-    public void checkRequest_idIsRequired() throws Exception {
+    public void checkRequestIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
         // set the field null
         transcriptionrequest.setRequestId(null);
@@ -162,7 +180,7 @@ public class TranscriptionrequestResourceIntTest {
     }
 
     @Test
-    public void checkSong_nameIsRequired() throws Exception {
+    public void checkSongNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
         // set the field null
         transcriptionrequest.setSongName(null);
@@ -213,10 +231,10 @@ public class TranscriptionrequestResourceIntTest {
     }
 
     @Test
-    public void checkUseridIsRequired() throws Exception {
+    public void checkUserIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
         // set the field null
-        transcriptionrequest.setUserid(null);
+        transcriptionrequest.setUserId(null);
 
         // Create the Transcriptionrequest, which fails.
 
@@ -247,6 +265,57 @@ public class TranscriptionrequestResourceIntTest {
     }
 
     @Test
+    public void checkLocationIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
+        // set the field null
+        transcriptionrequest.setLocation(null);
+
+        // Create the Transcriptionrequest, which fails.
+
+        restTranscriptionrequestMockMvc.perform(post("/api/transcriptionrequests")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(transcriptionrequest)))
+            .andExpect(status().isBadRequest());
+
+        List<Transcriptionrequest> transcriptionrequestList = transcriptionrequestRepository.findAll();
+        assertThat(transcriptionrequestList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkInstrumentIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
+        // set the field null
+        transcriptionrequest.setInstrument(null);
+
+        // Create the Transcriptionrequest, which fails.
+
+        restTranscriptionrequestMockMvc.perform(post("/api/transcriptionrequests")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(transcriptionrequest)))
+            .andExpect(status().isBadRequest());
+
+        List<Transcriptionrequest> transcriptionrequestList = transcriptionrequestRepository.findAll();
+        assertThat(transcriptionrequestList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    public void checkLastUpdatedIsRequired() throws Exception {
+        int databaseSizeBeforeTest = transcriptionrequestRepository.findAll().size();
+        // set the field null
+        transcriptionrequest.setLastUpdated(null);
+
+        // Create the Transcriptionrequest, which fails.
+
+        restTranscriptionrequestMockMvc.perform(post("/api/transcriptionrequests")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(transcriptionrequest)))
+            .andExpect(status().isBadRequest());
+
+        List<Transcriptionrequest> transcriptionrequestList = transcriptionrequestRepository.findAll();
+        assertThat(transcriptionrequestList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     public void getAllTranscriptionrequests() throws Exception {
         // Initialize the database
         transcriptionrequestRepository.save(transcriptionrequest);
@@ -256,12 +325,15 @@ public class TranscriptionrequestResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(transcriptionrequest.getId())))
-            .andExpect(jsonPath("$.[*].request_id").value(hasItem(DEFAULT_REQUEST_ID.toString())))
-            .andExpect(jsonPath("$.[*].song_name").value(hasItem(DEFAULT_SONG_NAME.toString())))
+            .andExpect(jsonPath("$.[*].requestId").value(hasItem(DEFAULT_REQUEST_ID.toString())))
+            .andExpect(jsonPath("$.[*].songName").value(hasItem(DEFAULT_SONG_NAME.toString())))
             .andExpect(jsonPath("$.[*].artist").value(hasItem(DEFAULT_ARTIST.toString())))
             .andExpect(jsonPath("$.[*].release").value(hasItem(DEFAULT_RELEASE.toString())))
-            .andExpect(jsonPath("$.[*].userid").value(hasItem(DEFAULT_USERID.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.toString())))
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].location").value(hasItem(DEFAULT_LOCATION.toString())))
+            .andExpect(jsonPath("$.[*].instrument").value(hasItem(DEFAULT_INSTRUMENT.toString())))
+            .andExpect(jsonPath("$.[*].lastUpdated").value(hasItem(sameInstant(DEFAULT_LAST_UPDATED))));
     }
 
     @Test
@@ -274,12 +346,15 @@ public class TranscriptionrequestResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(transcriptionrequest.getId()))
-            .andExpect(jsonPath("$.request_id").value(DEFAULT_REQUEST_ID.toString()))
-            .andExpect(jsonPath("$.song_name").value(DEFAULT_SONG_NAME.toString()))
+            .andExpect(jsonPath("$.requestId").value(DEFAULT_REQUEST_ID.toString()))
+            .andExpect(jsonPath("$.songName").value(DEFAULT_SONG_NAME.toString()))
             .andExpect(jsonPath("$.artist").value(DEFAULT_ARTIST.toString()))
             .andExpect(jsonPath("$.release").value(DEFAULT_RELEASE.toString()))
-            .andExpect(jsonPath("$.userid").value(DEFAULT_USERID.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.toString()))
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.location").value(DEFAULT_LOCATION.toString()))
+            .andExpect(jsonPath("$.instrument").value(DEFAULT_INSTRUMENT.toString()))
+            .andExpect(jsonPath("$.lastUpdated").value(sameInstant(DEFAULT_LAST_UPDATED)));
     }
 
     @Test
@@ -298,12 +373,15 @@ public class TranscriptionrequestResourceIntTest {
         // Update the transcriptionrequest
         Transcriptionrequest updatedTranscriptionrequest = transcriptionrequestRepository.findOne(transcriptionrequest.getId());
         updatedTranscriptionrequest
-                .request_id(UPDATED_REQUEST_ID)
-                .song_name(UPDATED_SONG_NAME)
+            .requestId(UPDATED_REQUEST_ID)
+            .songName(UPDATED_SONG_NAME)
                 .artist(UPDATED_ARTIST)
                 .release(UPDATED_RELEASE)
-                .userid(UPDATED_USERID)
-                .price(UPDATED_PRICE);
+            .userId(UPDATED_USER_ID)
+            .price(UPDATED_PRICE)
+            .location(UPDATED_LOCATION)
+            .instrument(UPDATED_INSTRUMENT)
+            .lastUpdated(UPDATED_LAST_UPDATED);
 
         restTranscriptionrequestMockMvc.perform(put("/api/transcriptionrequests")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -318,8 +396,11 @@ public class TranscriptionrequestResourceIntTest {
         assertThat(testTranscriptionrequest.getSongName()).isEqualTo(UPDATED_SONG_NAME);
         assertThat(testTranscriptionrequest.getArtist()).isEqualTo(UPDATED_ARTIST);
         assertThat(testTranscriptionrequest.getRelease()).isEqualTo(UPDATED_RELEASE);
-        assertThat(testTranscriptionrequest.getUserid()).isEqualTo(UPDATED_USERID);
+        assertThat(testTranscriptionrequest.getUserId()).isEqualTo(UPDATED_USER_ID);
         assertThat(testTranscriptionrequest.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testTranscriptionrequest.getLocation()).isEqualTo(UPDATED_LOCATION);
+        assertThat(testTranscriptionrequest.getInstrument()).isEqualTo(UPDATED_INSTRUMENT);
+        assertThat(testTranscriptionrequest.getLastUpdated()).isEqualTo(UPDATED_LAST_UPDATED);
     }
 
     @Test

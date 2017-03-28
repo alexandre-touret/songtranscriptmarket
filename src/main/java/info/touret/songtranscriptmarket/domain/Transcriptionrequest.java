@@ -1,13 +1,15 @@
 package info.touret.songtranscriptmarket.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.TextScore;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -25,6 +27,7 @@ public class Transcriptionrequest implements Serializable {
     @Id
     private String id;
 
+    @NotNull
     @Field("request_id")
     private String requestId;
 
@@ -43,12 +46,25 @@ public class Transcriptionrequest implements Serializable {
     @TextIndexed()
     private String release;
 
-    @Field("userid")
-    private String userid;
+    @NotNull
+    @Field("user_id")
+    private String userId;
 
     @NotNull
     @Field("price")
     private Float price;
+
+    @NotNull
+    @Field("location")
+    private String location;
+
+    @NotNull
+    @Field("instrument")
+    private String instrument;
+
+    @NotNull
+    @Field("last_updated")
+    private ZonedDateTime lastUpdated;
 
     public String getId() {
         return id;
@@ -62,30 +78,34 @@ public class Transcriptionrequest implements Serializable {
         return requestId;
     }
 
-    public Transcriptionrequest request_id(String request_id) {
-        this.requestId = request_id;
-        return this;
-    }
-
     public void setRequestId(String requestId) {
         this.requestId = requestId;
+    }
+
+    public Transcriptionrequest requestId(String requestId) {
+        this.requestId = requestId;
+        return this;
     }
 
     public String getSongName() {
         return songName;
     }
 
-    public Transcriptionrequest song_name(String song_name) {
-        this.songName = song_name;
-        return this;
-    }
-
     public void setSongName(String songName) {
         this.songName = songName;
     }
 
+    public Transcriptionrequest songName(String songName) {
+        this.songName = songName;
+        return this;
+    }
+
     public String getArtist() {
         return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     public Transcriptionrequest artist(String artist) {
@@ -93,12 +113,12 @@ public class Transcriptionrequest implements Serializable {
         return this;
     }
 
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
     public String getRelease() {
         return release;
+    }
+
+    public void setRelease(String release) {
+        this.release = release;
     }
 
     public Transcriptionrequest release(String release) {
@@ -106,25 +126,25 @@ public class Transcriptionrequest implements Serializable {
         return this;
     }
 
-    public void setRelease(String release) {
-        this.release = release;
+    public String getUserId() {
+        return userId;
     }
 
-    public String getUserid() {
-        return userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public Transcriptionrequest userid(String userid) {
-        this.userid = userid;
+    public Transcriptionrequest userId(String userId) {
+        this.userId = userId;
         return this;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
     }
 
     public Float getPrice() {
         return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
     public Transcriptionrequest price(Float price) {
@@ -140,8 +160,44 @@ public class Transcriptionrequest implements Serializable {
         this.score = score;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Transcriptionrequest location(String location) {
+        this.location = location;
+        return this;
+    }
+
+    public String getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
+    }
+
+    public Transcriptionrequest instrument(String instrument) {
+        this.instrument = instrument;
+        return this;
+    }
+
+    @LastModifiedDate
+    public ZonedDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(ZonedDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public Transcriptionrequest lastUpdated(ZonedDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+        return this;
     }
 
     @Override
@@ -172,8 +228,11 @@ public class Transcriptionrequest implements Serializable {
             ", songName='" + songName + "'" +
             ", artist='" + artist + "'" +
             ", release='" + release + "'" +
-            ", userid='" + userid + "'" +
+            ", userId='" + userId + "'" +
             ", price='" + price + "'" +
+            ", location='" + location + "'" +
+            ", instrument='" + instrument + "'" +
+            ", lastUpdated='" + lastUpdated + "'" +
             '}';
     }
 }

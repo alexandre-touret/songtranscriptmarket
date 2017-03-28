@@ -104,12 +104,15 @@
                     resolve: {
                         entity: function () {
                             return {
-                                request_id: null,
-                                song_name: null,
+                                requestId: null,
+                                songName: null,
                                 artist: null,
                                 release: null,
-                                userid: null,
+                                userId: null,
                                 price: null,
+                                location: null,
+                                instrument: null,
+                                lastUpdated: null,
                                 id: null
                             };
                         }

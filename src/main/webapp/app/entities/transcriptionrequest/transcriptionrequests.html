@@ -24,6 +24,15 @@
                     <th jh-sort-by="artist"><span data-translate="songtranscriptmarketApp.transcriptionrequest.artist">Artist</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="release"><span data-translate="songtranscriptmarketApp.transcriptionrequest.release">Release</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="price"><span data-translate="songtranscriptmarketApp.transcriptionrequest.price">Price</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="location"><span
+                        data-translate="songtranscriptmarketApp.transcriptionrequest.location">Location</span> <span
+                        class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="instrument"><span
+                        data-translate="songtranscriptmarketApp.transcriptionrequest.instrument">Instrument</span> <span
+                        class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastUpdated"><span
+                        data-translate="songtranscriptmarketApp.transcriptionrequest.lastUpdated">Last Updated</span>
+                        <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -35,6 +44,9 @@
                     <td>{{transcriptionrequest.artist}}</td>
                     <td>{{transcriptionrequest.release}}</td>
                     <td>{{transcriptionrequest.price}}</td>
+                    <td>{{transcriptionrequest.location}}</td>
+                    <td>{{transcriptionrequest.instrument}}</td>
+                    <td>{{transcriptionrequest.lastUpdated | date:'medium'}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

@@ -1,10 +1,5 @@
-import _root_.io.gatling.core.scenario.Simulation
-import ch.qos.logback.classic.{Level, LoggerContext}
-import io.gatling.core.Predef._
-import io.gatling.http.Predef._
+import ch.qos.logback.classic.LoggerContext
 import org.slf4j.LoggerFactory
-
-import scala.concurrent.duration._
 
 /**
  * Performance test for the Transcriptionrequest entity.
@@ -68,7 +63,7 @@ class TranscriptionrequestGatlingTest extends Simulation {
             .exec(http("Create new transcriptionrequest")
             .post("/api/transcriptionrequests")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "request_id":"SAMPLE_TEXT", "song_name":"SAMPLE_TEXT", "artist":"SAMPLE_TEXT", "release":"SAMPLE_TEXT", "userid":"SAMPLE_TEXT", "price":null}""")).asJSON
+                .body(StringBody("""{"id":null, "requestId":"SAMPLE_TEXT", "songName":"SAMPLE_TEXT", "artist":"SAMPLE_TEXT", "release":"SAMPLE_TEXT", "userId":"SAMPLE_TEXT", "price":null, "location":"SAMPLE_TEXT", "instrument":"SAMPLE_TEXT", "lastUpdated":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_transcriptionrequest_url"))).exitHereIfFailed
             .pause(10)
